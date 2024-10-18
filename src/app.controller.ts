@@ -13,7 +13,6 @@ export class AppController {
   async getPriceChanges(
     @Query() request: PriceChangesRequestDto,
   ): Promise<PriceChangeResponseDto> {
-    console.log(request, JSON.stringify(request))
     const priceChanges = await this.appService.getPriceChanges(request);
     return { priceChanges };
   }

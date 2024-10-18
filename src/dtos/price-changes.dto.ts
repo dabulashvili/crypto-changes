@@ -20,11 +20,10 @@ export class PriceChangesRequestDto {
 
 export class PriceChangeDto {
     price: string;
+    date: Date;
     change?: number;
 }
 
 export class PriceChangeResponseDto {
     priceChanges: PriceChangeDto[];
 }
-
-// http://localhost:3000/price-changes?symbol=ETHBTC&interval=1d&from=1629245855&to=1729245855

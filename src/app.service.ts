@@ -10,7 +10,8 @@ export class AppService {
     const candles = await this.binanceService.getCandles(request.symbol, request.interval, request.from, request.to);
 
     return candles.map(candle => ({
-      price: candle.close,
+      price: candle.open,
+      date: new Date(candle.open)
     }))
   }
 }
