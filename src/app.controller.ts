@@ -1,13 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CandleChartResult } from 'binance-api-node';
+import {
+  PriceChangeResponseDto,
+  PriceChangesRequestDto,
+} from './dtos/price-changes.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/candles')
-  getCandles(): Promise<CandleChartResult[]> {
-    return this.appService.getCandles();
+  @Get('/price-changes')
+  async getPriceChanges(
+    @Query() request: PriceChangesRequestDto,
+  ): Promise<PriceChangeResponseDto> {
+    console.log(request, JSON.stringify(request))
+    const priceChanges = await this.appService.getPriceChanges(request);
+    return { priceChanges };
   }
 }
